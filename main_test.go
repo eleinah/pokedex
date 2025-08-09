@@ -9,19 +9,19 @@ type TestCase struct {
 
 func TestCleanInput(t *testing.T) {
 	cases := []TestCase{
-		TestCase{
+		{
 			input:    "   hello  world    ",
 			expected: []string{"hello", "world"},
 		},
-		TestCase{
+		{
 			input:    " my       name is   ellie",
 			expected: []string{"my", "name", "is", "ellie"},
 		},
-		TestCase{
+		{
 			input:    "i   like the  color  lavender",
 			expected: []string{"i", "like", "the", "color", "lavender"},
 		},
-		TestCase{
+		{
 			input:    "  trans rights  are human   rights!   ",
 			expected: []string{"trans", "rights", "are", "human", "rights!"},
 		},
