@@ -24,6 +24,8 @@ func startRepl() {
 		switch strings.ToLower(cmdInput[0]) {
 		case "exit":
 			cmd.Exit()
+		case "help":
+			cmd.Help()
 		}
 	}
 }
