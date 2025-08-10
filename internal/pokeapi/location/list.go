@@ -9,7 +9,7 @@ import (
 	"github.com/eleinah/pokedex/internal/pokeapi/types"
 )
 
-func GetLocation() ([]types.RespShallowLocations, error) {
+func ListLocation() ([]types.RespShallowLocations, error) {
 	var fullURL string = pokeapi.BaseURL + "/location-area"
 
 	var areaMap []types.RespShallowLocations
