@@ -39,7 +39,7 @@ func startRepl(cfg *pokeapi.Config) {
 			}
 			continue
 		} else {
-			fmt.Println("Unknown command")
+			fmt.Printf("error: unknown command '%s', type 'help' for usage\n", command)
 			continue
 		}
 	}
