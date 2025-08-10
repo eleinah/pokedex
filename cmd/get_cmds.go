@@ -1,9 +1,11 @@
 package cmd
 
+import "github.com/eleinah/pokedex/internal/pokeapi"
+
 type cliCmd struct {
 	name        string
 	description string
-	callback    func() error
+	callback    func(*pokeapi.Config) error
 }
 
 func getCmds() map[string]cliCmd {
@@ -17,6 +19,16 @@ func getCmds() map[string]cliCmd {
 			name:        "help",
 			description: "Displays a help message",
 			callback:    Help,
+		},
+		"map": {
+			name:        "map",
+			description: "Get the next page of locations",
+			callback:    Mapf,
+		},
+		"mapb": {
+			name:        "mapb",
+			description: "Get the previous page of locations",
+			callback:    Mapb,
 		},
 	}
 }

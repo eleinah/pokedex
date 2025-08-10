@@ -2,11 +2,13 @@ package cmd
 
 import (
 	"fmt"
+
+	"github.com/eleinah/pokedex/internal/pokeapi"
 )
 
-func Help() error {
+func Help(cfg *pokeapi.Config) error {
 	fmt.Printf(`
-Welcome to the Pokedex!
+Welcome to the Pokédex!
 Usage:
 
 

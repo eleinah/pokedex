@@ -1,4 +1,10 @@
-package types
+package pokeapi
+
+type Config struct {
+	PokeAPIClient       Client
+	NextLocationURL     *string
+	PreviousLocationURL *string
+}
 
 type RespShallowLocations struct {
 	Count    int     `json:"count"`
