@@ -13,8 +13,8 @@ Usage:
 
 
 `)
-	for _, cmd := range getCmds() {
-		fmt.Printf("%s: %s\n", cmd.name, cmd.description)
+	for _, cmd := range GetCmds() {
+		fmt.Printf("%s: %s\n", cmd.Name, cmd.Description)
 	}
 	return nil
 }
