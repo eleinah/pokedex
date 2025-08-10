@@ -2,6 +2,7 @@ package location
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
 
 	"github.com/eleinah/pokedex/internal/pokeapi"
@@ -23,6 +24,9 @@ func GetLocationArea() ([]types.RespShallowLocations, error) {
 	res, err := client.Do(req)
 	if err != nil {
 		return []types.RespShallowLocations{}, err
+	}
+	if res.StatusCode > 299 {
+		log.Fatalf("Response failed with status code: %d and\nbody: %s\n", res.StatusCode, res.Body)
 	}
 	defer res.Body.Close()
 
