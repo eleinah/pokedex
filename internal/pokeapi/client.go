@@ -5,13 +5,21 @@ import (
 	"time"
 )
 
-func NewClient(timeout time.Duration) *http.Client {
+type Client struct {
+	HTTP http.Client
+}
+
+func NewClient(timeout time.Duration) *Client {
 	if timeout < 1 {
-		return &http.Client{
-			Timeout: 0,
+		return &Client{
+			HTTP: http.Client{
+				Timeout: 0,
+			},
 		}
 	}
-	return &http.Client{
-		Timeout: timeout * time.Second,
+	return &Client{
+		HTTP: http.Client{
+			Timeout: timeout * time.Second,
+		},
 	}
 }
