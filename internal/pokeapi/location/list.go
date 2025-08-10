@@ -22,7 +22,7 @@ func ListLocation() ([]types.RespShallowLocations, error) {
 		return []types.RespShallowLocations{}, fmt.Errorf("failed to make request: %w", err)
 	}
 
-	res, err := client.HTTP.Do(req)
+	resp, err := client.HTTP.Do(req)
 	if err != nil {
 		return []types.RespShallowLocations{}, fmt.Errorf("failed to send request: %w", err)
 	}
