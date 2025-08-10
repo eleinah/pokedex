@@ -7,8 +7,9 @@ import (
 )
 
 func main() {
-	clientTimeout := 5 * time.Second
-	client := pokeapi.NewClient(clientTimeout)
+	timeoutInterval := 5 * time.Second
+	cacheInterval := 5 * time.Minute
+	client := pokeapi.NewClient(timeoutInterval, cacheInterval)
 
 	cfg := &pokeapi.Config{
 		PokeAPIClient: client,

@@ -4,13 +4,11 @@ import (
 	"testing"
 )
 
-type TestCase struct {
-	input    string
-	expected []string
-}
-
 func TestCleanInput(t *testing.T) {
-	cases := []TestCase{
+	cases := []struct {
+		input    string
+		expected []string
+	}{
 		{
 			input:    "   hello  world    ",
 			expected: []string{"hello", "world"},

@@ -3,9 +3,9 @@ package pokeapi
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"log"
 	"net/http"
-	"time"
 )
 
 func (c *Client) ListLocations(pageURL *string) (RespShallowLocations, error) {
@@ -16,14 +16,22 @@ func (c *Client) ListLocations(pageURL *string) (RespShallowLocations, error) {
 
 	var areaMap RespShallowLocations
 
-	client := NewClient(5 * time.Second)
+	if val, ok := c.Cache.Get(fullURL); ok {
+		locations := RespShallowLocations{}
+		err := json.Unmarshal(val, &locations)
+		if err != nil {
+			return RespShallowLocations{}, err
+		}
+
+		return locations, nil
+	}
 
 	req, err := http.NewRequest("GET", fullURL, nil)
 	if err != nil {
 		return RespShallowLocations{}, fmt.Errorf("failed to make request: %w", err)
 	}
 
-	resp, err := client.HTTP.Do(req)
+	resp, err := c.HTTP.Do(req)
 	if err != nil {
 		return RespShallowLocations{}, fmt.Errorf("failed to send request: %w", err)
 	}
@@ -32,10 +40,15 @@ func (c *Client) ListLocations(pageURL *string) (RespShallowLocations, error) {
 	}
 	defer resp.Body.Close()
 
-	decoder := json.NewDecoder(resp.Body)
-	if err := decoder.Decode(&areaMap); err != nil {
+	data, err := io.ReadAll(resp.Body)
+	if err != nil {
 		return RespShallowLocations{}, err
 	}
 
+	if err := json.Unmarshal(data, &areaMap); err != nil {
+		return RespShallowLocations{}, err
+	}
+
+	c.Cache.Add(fullURL, data)
 	return areaMap, nil
 }
