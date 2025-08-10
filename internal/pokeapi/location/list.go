@@ -26,12 +26,12 @@ func ListLocation() ([]types.RespShallowLocations, error) {
 	if err != nil {
 		return []types.RespShallowLocations{}, fmt.Errorf("failed to send request: %w", err)
 	}
-	if res.StatusCode > 299 {
-		log.Fatalf("Response failed with status code: %d and\nbody: %s\n", res.StatusCode, res.Body)
+	if resp.StatusCode > 299 {
+		log.Fatalf("Response failed with status code: %d and\nbody: %s\n", resp.StatusCode, resp.Body)
 	}
-	defer res.Body.Close()
+	defer resp.Body.Close()
 
-	decoder := json.NewDecoder(res.Body)
+	decoder := json.NewDecoder(resp.Body)
 	if err := decoder.Decode(&areaMap); err != nil {
 		return []types.RespShallowLocations{}, err
 	}
