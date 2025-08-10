@@ -4,6 +4,7 @@ type Config struct {
 	PokeAPIClient       Client
 	NextLocationURL     *string
 	PreviousLocationURL *string
+	CaughtPokemon       map[string]Pokemon
 }
 
 type RespShallowLocations struct {

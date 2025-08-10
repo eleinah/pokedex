@@ -22,18 +22,23 @@ func GetCmds() map[string]cliCmd {
 		},
 		"map": {
 			Name:        "map",
-			Description: "Get the next page of loCations",
+			Description: "Get the next page of locations",
 			Callback:    Mapf,
 		},
 		"mapb": {
 			Name:        "mapb",
-			Description: "Get the previous page of loCations",
+			Description: "Get the previous page of locations",
 			Callback:    Mapb,
 		},
 		"explore": {
 			Name:        "explore",
 			Description: "Explore a location",
 			Callback:    Explore,
+		},
+		"catch": {
+			Name:        "catch",
+			Description: "Catch a pokemon",
+			Callback:    Catch,
 		},
 	}
 }
