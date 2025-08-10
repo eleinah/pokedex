@@ -6,23 +6,20 @@ import (
 )
 
 type Client struct {
-	httpClient http.Client
-}
-type LocationArea struct {
-	Count    int       `json:"count"`
-	Next     string    `json:"next"`
-	Previous any       `json:"previous"`
-	Results  []Results `json:"results"`
-}
-type Results struct {
-	Name string `json:"name"`
-	URL  string `json:"url"`
+	http.Client
 }
 
-func NewClient(timeout time.Duration) Client {
-	return Client{
-		httpClient: http.Client{
-			Timeout: timeout,
+func NewClient(timeout time.Duration) *Client {
+	if timeout < 1 {
+		return &Client{
+			http.Client{
+				Timeout: 0,
+			},
+		}
+	}
+	return &Client{
+		http.Client{
+			Timeout: timeout * time.Second,
 		},
 	}
 }
