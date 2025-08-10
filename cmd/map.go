@@ -7,7 +7,7 @@ import (
 	"github.com/eleinah/pokedex/internal/pokeapi"
 )
 
-func Mapf(cfg *pokeapi.Config) error {
+func Mapf(cfg *pokeapi.Config, args ...string) error {
 	locations, err := cfg.PokeAPIClient.ListLocations(cfg.NextLocationURL)
 	if err != nil {
 		return err
@@ -22,7 +22,7 @@ func Mapf(cfg *pokeapi.Config) error {
 	return nil
 }
 
-func Mapb(cfg *pokeapi.Config) error {
+func Mapb(cfg *pokeapi.Config, args ...string) error {
 	if cfg.PreviousLocationURL == nil {
 		err := errors.New("you're on the first page")
 		fmt.Printf("error: %v\n", err)

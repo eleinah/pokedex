@@ -6,7 +6,7 @@ import (
 	"github.com/eleinah/pokedex/internal/pokeapi"
 )
 
-func Help(cfg *pokeapi.Config) error {
+func Help(cfg *pokeapi.Config, args ...string) error {
 	fmt.Printf(`
 Welcome to the Pokédex!
 Usage:

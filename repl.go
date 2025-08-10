@@ -15,26 +15,32 @@ func cleanInput(text string) []string {
 }
 
 func startRepl(cfg *pokeapi.Config) {
-	scanner := bufio.NewScanner(os.Stdin)
-
+	reader := bufio.NewScanner(os.Stdin)
 	for {
-		fmt.Print("Pokédex > ")
-		scanner.Scan()
+		fmt.Print("Pokedex > ")
+		reader.Scan()
 
-		userInput := cleanInput(scanner.Text())
-		command := strings.ToLower(userInput[0])
+		words := cleanInput(reader.Text())
+		if len(words) == 0 {
+			continue
+		}
 
-		switch command {
-		case "exit":
-			cmd.Exit(cfg)
-		case "help":
-			cmd.Help(cfg)
-		case "map":
-			cmd.Mapf(cfg)
-		case "mapb":
-			cmd.Mapb(cfg)
-		default:
-			fmt.Printf("error: command '%v' not found, type 'help' to see usage\n", command)
+		commandName := words[0]
+		args := []string{}
+		if len(words) > 1 {
+			args = words[1:]
+		}
+
+		command, exists := cmd.GetCmds()[commandName]
+		if exists {
+			err := command.Callback(cfg, args...)
+			if err != nil {
+				fmt.Println(err)
+			}
+			continue
+		} else {
+			fmt.Println("Unknown command")
+			continue
 		}
 	}
 }

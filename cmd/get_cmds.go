@@ -3,32 +3,37 @@ package cmd
 import "github.com/eleinah/pokedex/internal/pokeapi"
 
 type cliCmd struct {
-	name        string
-	description string
-	callback    func(*pokeapi.Config) error
+	Name        string
+	Description string
+	Callback    func(*pokeapi.Config, ...string) error
 }
 
-func getCmds() map[string]cliCmd {
+func GetCmds() map[string]cliCmd {
 	return map[string]cliCmd{
 		"exit": {
-			name:        "exit",
-			description: "Exit the Pokedex",
-			callback:    Exit,
+			Name:        "exit",
+			Description: "Exit the Pokedex",
+			Callback:    Exit,
 		},
 		"help": {
-			name:        "help",
-			description: "Displays a help message",
-			callback:    Help,
+			Name:        "help",
+			Description: "Displays a help message",
+			Callback:    Help,
 		},
 		"map": {
-			name:        "map",
-			description: "Get the next page of locations",
-			callback:    Mapf,
+			Name:        "map",
+			Description: "Get the next page of loCations",
+			Callback:    Mapf,
 		},
 		"mapb": {
-			name:        "mapb",
-			description: "Get the previous page of locations",
-			callback:    Mapb,
+			Name:        "mapb",
+			Description: "Get the previous page of loCations",
+			Callback:    Mapb,
+		},
+		"explore": {
+			Name:        "explore",
+			Description: "Explore a location",
+			Callback:    Explore,
 		},
 	}
 }
