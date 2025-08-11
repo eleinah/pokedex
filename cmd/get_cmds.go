@@ -20,6 +20,11 @@ func GetCmds() map[string]cliCmd {
 			Description: "Displays a help message",
 			Callback:    Help,
 		},
+		"clear": {
+			Name:        "clear",
+			Description: "Clear the display",
+			Callback:    Clear,
+		},
 		"map": {
 			Name:        "map",
 			Description: "Get the next page of locations",
