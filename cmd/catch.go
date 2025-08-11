@@ -24,6 +24,7 @@ func Catch(cfg *pokeapi.Config, args ...string) error {
 	fmt.Printf("Throwing a Pokeball at %s...\n", pokemon.Name)
 	if result > 40 {
 		fmt.Printf("%s escaped!\n", pokemon.Name)
+		return nil
 	}
 
 	fmt.Printf("%s was caught!\n", pokemon.Name)
