@@ -17,7 +17,7 @@ func cleanInput(text string) []string {
 func startRepl(cfg *pokeapi.Config) {
 	reader := bufio.NewScanner(os.Stdin)
 	for {
-		fmt.Print("Pokedex > ")
+		fmt.Print("Pokédex > ")
 		reader.Scan()
 
 		words := cleanInput(reader.Text())
@@ -39,7 +39,7 @@ func startRepl(cfg *pokeapi.Config) {
 			}
 			continue
 		} else {
-			fmt.Println("error: unknown command")
+			fmt.Println("unknown command")
 			continue
 		}
 	}

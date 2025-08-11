@@ -24,7 +24,7 @@ func Mapf(cfg *pokeapi.Config, args ...string) error {
 
 func Mapb(cfg *pokeapi.Config, args ...string) error {
 	if cfg.PreviousLocationURL == nil {
-		err := errors.New("error: you're on the first page")
+		err := errors.New("you're on the first page")
 		return err
 	}
 

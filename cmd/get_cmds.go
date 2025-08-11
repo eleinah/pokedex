@@ -12,7 +12,7 @@ func GetCmds() map[string]cliCmd {
 	return map[string]cliCmd{
 		"exit": {
 			Name:        "exit",
-			Description: "Exit the Pokedex",
+			Description: "Exit the Pokédex",
 			Callback:    Exit,
 		},
 		"help": {
@@ -39,6 +39,16 @@ func GetCmds() map[string]cliCmd {
 			Name:        "catch",
 			Description: "Catch a pokemon",
 			Callback:    Catch,
+		},
+		"inspect": {
+			Name:        "inspect",
+			Description: "Inspect a caught pokemon",
+			Callback:    Inspect,
+		},
+		"pokedex": {
+			Name:        "pokedex",
+			Description: "View your Pokédex",
+			Callback:    Pokedex,
 		},
 	}
 }
